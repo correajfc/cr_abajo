@@ -26,11 +26,11 @@ ts_chr <- xpathSApply(parsed, path = "//trkpt/time", xmlValue)
 
 # combine into df 
 dat_df <- data.frame(
-  ts_POSIXct = ymd_hms(ts_chr, tz = "UTC"),
+  ts_POSIXct = ymd_hms(ts_chr, tz = "America/Bogota"),
   lat = as.numeric(coords["lat",]), 
   lon = as.numeric(coords["lon",]), 
   elev = as.numeric(elev)
 )
 head(dat_df)
 
-dat_df %>% ggplot()+aes(ts_POSIXct,elev)+geom_line()
+dat_df %>% ggplot()+aes(ts_POSIXct,elev)+geom_line()+scale_x_datetime()

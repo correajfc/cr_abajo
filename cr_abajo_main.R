@@ -3,17 +3,17 @@ library(dplyr)
 library(tidygeocoder)
 library(osrm)
 
-# 1. One World Trade Center, NYC
-# 2. Madison Square Park, NYC
-adresses <- c("285 Fulton St, New York, NY 10007", 
-              "11 Madison Ave, New York, NY 10010")
-
-# geocode the two addresses & transform to {sf} data structure
-data <- tidygeocoder::geo(adresses, method = "osm") %>% 
-  st_as_sf(coords = c("long", "lat"), crs = 4326)
-
-osroute <- osrm::osrmRoute(loc = data,
-                           returnclass = "sf")
+# # 1. One World Trade Center, NYC
+# # 2. Madison Square Park, NYC
+# adresses <- c("285 Fulton St, New York, NY 10007", 
+#               "11 Madison Ave, New York, NY 10010")
+# 
+# # geocode the two addresses & transform to {sf} data structure
+# data <- tidygeocoder::geo(adresses, method = "osm") %>% 
+#   st_as_sf(coords = c("long", "lat"), crs = 4326)
+# 
+# osroute <- osrm::osrmRoute(loc = data,
+#                            returnclass = "sf")
 
 # sample osroute 50 times regularly, cast to POINT, return sf (not sfc) object
 osroute_sampled <- st_sample(osroute, type = 'regular', size = 50) %>%
@@ -32,11 +32,16 @@ osroute_xy <- osroute_sampled %>%
          x = st_coordinates(.)[,"X"],
          y = st_coordinates(.)[,"Y"]) 
 
+min_long <- dat_df$lon %>% min()
+max_long <- dat_df$lon %>% max()
+
+min_lat <- dat_df$lat %>% min()
+max_lat <- dat_df$lat %>% max()
 # basemap / the bbox depends on yer area of interest
-NYC <- get_stamenmap(bbox = c(-74.05, 40.68, -73.9, 40.8),
+CALI <- get_stamenmap(bbox = c(min_long, min_lat, max_long, max_lat),
                      zoom = 13,
                      maptype = "toner-background")
-
+ggmap(CALI)
 # draw a map 
 animation <- ggmap(NYC) + 
   geom_point(data = osroute_xy,
