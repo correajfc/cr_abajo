@@ -2,7 +2,7 @@
 
 Mapa del descenso desde el monumento a Cristo Rey, en el cerro Los Cristales, en Cali - Colombia.
 
-En este proyecto se usan datos en formato gpx de la [actividad](https://www.strava.com/activities/4407555425/segments/3103800653678209830) en Strava, para crear una animación con `gganimate` del trayecto y la curva de elevación contra distancia recorrida. Las animaciones fueron usadas en el video de Youtube [Cuesta abajo vol.01]() 
+En este proyecto se usan datos en formato gpx de la [actividad](https://www.strava.com/activities/4407555425/segments/3103800653678209830) en Strava, para crear una animación con `gganimate` del trayecto y la curva de elevación contra distancia recorrida. Las animaciones fueron usadas en el video de Youtube [Cuesta abajo vol.01](https://youtu.be/OCdllycpg68) 
 
 ## Mapa y trayectoria
 

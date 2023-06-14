@@ -57,8 +57,8 @@ animation <- ggmap(CALI_inv) +
 # create animation gif 760x800
 gganimate::animate(animation, 
                    nframes = nrow(dat_df_fltr), 
-                   height = 800, 
-                   width = 760,
+                   height = 480, 
+                   width = 854 ,
                    fps = 30, 
                    renderer = gifski_renderer(loop = T))
 
@@ -116,7 +116,7 @@ ggplot()+
                   ymax = elev), 
               fill = 'grey85', alpha=0.9, position = "identity") +
   geom_point(color = "red",
-             size = 5)+
+             size = 3)+
   scale_x_continuous(name = "distancia",labels = scales::label_number_si(unit = "km"))+
   scale_y_continuous(name = "elevación",labels = scales::label_number(suffix = "m"))+
   coord_fixed(ratio = 2)+
@@ -132,15 +132,15 @@ ggplot()+
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
     plot.background = element_rect(fill = "black"),
-    axis.text = element_text(color = "white",size = 6),
-    axis.title = element_text(color = "white", size = 6),
+    axis.text = element_text(color = "white",size = 9),
+    axis.title = element_text(color = "white", size = 9),
   )+
   transition_reveal(ts_POSIXct) +
   shadow_wake(wake_length = 1/6)
   
 gganimate::animate(animation_elev, 
                    nframes = nrow(dat_df_fltr), 
-                   height = 300, 
+                   height = 150, 
                    width = 760,
                    fps = 30, 
                    renderer = gifski_renderer(loop = T))
